@@ -8,7 +8,7 @@ import taskRoutes from './routes/tasks.js';
 import rewardRoutes from './routes/rewards.js';
 import quoteRoutes       from './routes/quotes.js';
 import generalTaskRoutes from './routes/generalTasks.js';
-import todoRoutes from './routes/todos.js';
+import router from './routes/todos.js';
 
 dotenv.config();
 
@@ -28,6 +28,8 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/rewards', rewardRoutes);
 app.use('/api/quote',         quoteRoutes);
 app.use('/api/general-tasks', generalTaskRoutes);
-app.use('/api/todos', todoRoutes);
+app.use('/api/todos', router);
 
-app.listen(5000, () => console.log('Server running on port 5000'));
+const port = process.env.PORT
+
+app.listen(port, () => console.log('Server running on port 5000'));

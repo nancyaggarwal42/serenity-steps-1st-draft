@@ -46,8 +46,11 @@ export default function QuoteCard() {
   const [quote,   setQuote]   = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const baseUrl = 'https://serenity-steps-1st-draft-1-backend-1.onrender.com'
+
+
   useEffect(() => {
-    axios.get('http://localhost:5000/api/quote')
+    axios.get(`${baseUrl}/api/quote`)
       .then(r => setQuote(r.data))
       .catch(console.error)
       .finally(() => setLoading(false));

@@ -9,13 +9,14 @@ export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const baseUrl = 'https://serenity-steps-1st-draft-1-backend-1.onrender.com'
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
     try {
-      const { data } = await axios.post('http://localhost:5000/api/auth/login', form);
+      const { data } = await axios.post(`${baseUrl}/api/auth/login`, form);
       login(data.token, data.user);
       if (data.user.addictions?.length > 0) navigate('/dashboard');
       else navigate('/choice');

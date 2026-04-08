@@ -21,9 +21,11 @@ export default function KnowAddiction() {
     prev.includes(name) ? prev.filter(n => n !== name) : [...prev, name]
   );
 
+  const baseUrl = 'https://serenity-steps-1st-draft-1-backend-1.onrender.com'
+
   const handleSubmit = async () => {
     if (!selected.length) return alert('Please select at least one addiction.');
-    const { data } = await axios.post('http://localhost:5000/api/addiction/known', { addictions: selected });
+    const { data } = await axios.post(`${baseUrl}/api/addiction/known`, { addictions: selected });
     setUser(u => ({ ...u, addictions: data.addictions }));
     navigate('/profile');
   };

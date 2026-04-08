@@ -1,17 +1,19 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [loading, setLoading] = useState(true);
+  const baseUrl = "https://serenity-steps-1st-draft-1-backend-1.onrender.com"
 
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      axios.get('http://localhost:5000/api/auth/me')
+      axios.get(`${baseUrl}/api/auth/me`)
         .then(r => setUser(r.data))
         .catch(() => logout())
         .finally(() => setLoading(false));

@@ -204,9 +204,11 @@ export default function Tasks() {
   const [data,    setData]    = useState(null);
   const [loading, setLoading] = useState(true);
   const [error,   setError]   = useState('');
+  const baseUrl = 'https://serenity-steps-1st-draft-1-backend-1.onrender.com'
+
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/tasks')
+    axios.get(`${baseUrl}/api/tasks`)
       .then(r => setData(r.data))
       .catch(e => setError(e.response?.data?.message || 'Failed to load tasks'))
       .finally(() => setLoading(false));

@@ -489,11 +489,13 @@ export default function Navbar() {
   const [loading,  setLoading]  = useState(false);
   const panelRef  = useRef(null);
   const inputRef  = useRef(null);
+  const baseUrl = 'https://serenity-steps-1st-draft-1-backend-1.onrender.com'
+
 
   useEffect(() => {
     if (!open) return;
     setLoading(true);
-    axios.get('http://localhost:5000/api/todos')
+    axios.get(`${baseUrl}/api/todos`)
       .then(r => setTodos(r.data))
       .catch(console.error)
       .finally(() => setLoading(false));

@@ -74,13 +74,14 @@ export default function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '', age: '', gender: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const baseUrl = 'https://serenity-steps-1st-draft-1-backend-1.onrender.com'
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
     try {
-      const { data } = await axios.post('http://localhost:5000/api/auth/register', form);
+      const { data } = await axios.post(`${baseUrl}/api/auth/register`, form);
       login(data.token, data.user);
       navigate('/choice');
     } catch (err) {

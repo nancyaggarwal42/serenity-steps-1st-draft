@@ -83,9 +83,11 @@ export default function RewardStrip() {
   const navigate = useNavigate();
   const [data,    setData]    = useState(null);
   const [loading, setLoading] = useState(true);
+  const baseUrl = 'https://serenity-steps-1st-draft-1-backend-1.onrender.com'
+
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/rewards')
+    axios.get(`${baseUrl}/api/rewards`)
       .then(r => setData(r.data))
       .catch(console.error)
       .finally(() => setLoading(false));

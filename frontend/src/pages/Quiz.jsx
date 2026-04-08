@@ -74,8 +74,10 @@ export default function Quiz() {
     else submit();
   };
 
+  const baseUrl = 'https://serenity-steps-1st-draft-1-backend-1.onrender.com'
+
   const submit = async () => {
-    const { data } = await axios.post('http://localhost:5000/api/addiction/quiz', { answers });
+    const { data } = await axios.post(`${baseUrl}/api/addiction/quiz`, { answers });
     setUser(u => ({ ...u, addictions: data.addictions }));
     navigate('/profile');
   };

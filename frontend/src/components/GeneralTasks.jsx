@@ -111,8 +111,10 @@ export default function GeneralTasks() {
       .finally(() => setLoading(false));
   }, []);
 
+  const baseUrl = 'https://serenity-steps-1st-draft-1-backend-1.onrender.com'
+
   const toggle = async (id) => {
-    const { data } = await axios.patch(`http://localhost:5000/api/general-tasks/${id}/complete`);
+    const { data } = await axios.patch(`${baseUrl}/api/general-tasks/${id}/complete`);
     setTasks(prev => prev.map(t => t._id === id ? { ...t, completed: data.completed } : t));
     setStats(prev => ({ ...prev, completed: prev.completed + (data.completed ? 1 : -1) }));
   };
